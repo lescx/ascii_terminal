@@ -7,12 +7,23 @@
 |27|28|29|30|31|  |  |
 */
 
-String returnWeekdays() {
-  return '|${weekdays.join('|')}|';
+// Wrapper function for printCalender
+// Does not get called directly
+void printWeekdays(int startWeekday) {
+  print('|${weekdays.join('|')}|');
 }
 
-String returnDate() {
-  return 'Halluu';
+// Wrapper function for printCalender
+// Does not get called directly
+void printDate(int month) {
+  for (int i = 1; i <= daysInMonth[month - 1]; i++) {
+    print('$i');
+  }
+}
+
+void printCalendar(int month, int startWeekday) {
+  printWeekdays(startWeekday);
+  printDate(month);
 }
 
 // Leap year is not taken into account
