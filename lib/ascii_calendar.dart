@@ -15,8 +15,12 @@ void printWeekdays(int startWeekday) {
 
 // Wrapper function for printCalender
 // Does not get called directly
-void printDate(int month) {
+void printDate(int month, int startWeekday) {
   StringBuffer buffer = StringBuffer();
+
+  for (int i = 1; i < startWeekday; i++) {
+    buffer.write('|  ');
+  }
 
   for (int day = 1; day <= daysInMonth[month - 1]; day++) {
     // Formatting of each cell. Add ' ' if date is < 10.
@@ -26,6 +30,10 @@ void printDate(int month) {
       buffer.write('|$day');
     }
 
+    // Wrap after 7 days
+    //
+    // TODO:
+    // If startWeekday > 1, this breaks formatting
     if (day % 7 == 0) {
       buffer.write('|\n');
     }
@@ -38,7 +46,7 @@ void printDate(int month) {
 
 void printCalendar(int month, int startWeekday) {
   printWeekdays(startWeekday);
-  printDate(month);
+  printDate(month, startWeekday);
 }
 
 // Leap year is not taken into account
