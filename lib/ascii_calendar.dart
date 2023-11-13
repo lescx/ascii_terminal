@@ -16,9 +16,18 @@ void printWeekdays(int startWeekday) {
 // Wrapper function for printCalender
 // Does not get called directly
 void printDate(int month) {
-  for (int i = 1; i <= daysInMonth[month - 1]; i++) {
-    print('$i');
+  StringBuffer buffer = StringBuffer();
+
+  for (int day = 1; day <= daysInMonth[month - 1]; day++) {
+    buffer.write('| $day ');
+    if (day % 7 == 0) {
+      buffer.write('|\n');
+    }
   }
+  buffer.write('|');
+
+  String result = buffer.toString();
+  print(result);
 }
 
 void printCalendar(int month, int startWeekday) {
