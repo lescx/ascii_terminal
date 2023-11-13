@@ -9,13 +9,13 @@
 
 // Wrapper function for printCalender
 // Does not get called directly
-void printWeekdays(int startWeekday) {
-  print('|${weekdays.join('|')}|');
+String printWeekdays(int startWeekday) {
+  return '|${weekdays.join('|')}|\n';
 }
 
 // Wrapper function for printCalender
 // Does not get called directly
-void printDate(int month, int startWeekday) {
+String printDate(int month, int startWeekday) {
   StringBuffer buffer = StringBuffer();
   int weekdayCounter = startWeekday;
 
@@ -41,17 +41,24 @@ void printDate(int month, int startWeekday) {
 
   // Fill the last week with empty cells if necessary
   for (int i = weekdayCounter; i <= 7; i++) {
-    buffer.write('|  ');
+    buffer.write(i == weekdayCounter ? '  ' : '|  ');
   }
-  buffer.write('|');
+  buffer.write('|\n');
 
   String result = buffer.toString();
-  print(result);
+
+  return result;
 }
 
-void printCalendar(int month, int startWeekday) {
-  printWeekdays(startWeekday);
-  printDate(month, startWeekday);
+String printCalendar(int month, int startWeekday) {
+  StringBuffer buffer = StringBuffer();
+
+  buffer.write(printWeekdays(startWeekday));
+  buffer.write(printDate(month, startWeekday));
+
+  String calendar = buffer.toString();
+  
+  return calendar;
 }
 
 // Leap year is not taken into account

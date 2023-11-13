@@ -3,7 +3,7 @@ import 'package:ascii_calendar/ascii_calendar.dart' as ascii_calendar;
 void main(List<String> arguments) {
   if (arguments.length != 2) {
     print(
-        'Bitte geben Sie genau zwei Argumente ein: Monat (1-12) und Startwochentag (1-7).');
+        'Please enter two arguments: month (1-12) and start weekday of month (1-7).');
     return;
   }
 
@@ -13,17 +13,17 @@ void main(List<String> arguments) {
 
     // Überprüfen, ob die Werte im erwarteten Bereich liegen
     if (month < 1 || month > 12) {
-      print('Der Monatswert muss zwischen 1 und 12 liegen.');
+      print('The month must be between 1 and 12.');
       return;
     }
     if (startWeekday < 1 || startWeekday > 7) {
-      print('Der Startwochentag muss zwischen 1 (MO) und 7 (SO) liegen.');
+      print('The start weekday must be between 1 (MO) and 7 (SO).');
       return;
     }
 
-    ascii_calendar.printCalendar(month, startWeekday);
+    print(ascii_calendar.printCalendar(month, startWeekday));
   } catch (e) {
     print(
-        'Fehler bei der Verarbeitung der Argumente: Stellen Sie sicher, dass sowohl Monat als auch Startwochentag Zahlen sind.');
+        'Error in the processing of arguments. Make sure you entered integers for month and weekday.');
   }
 }
