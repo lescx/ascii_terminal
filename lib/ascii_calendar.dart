@@ -17,6 +17,7 @@ void printWeekdays(int startWeekday) {
 // Does not get called directly
 void printDate(int month, int startWeekday) {
   StringBuffer buffer = StringBuffer();
+  int weekdayCounter = startWeekday;
 
   for (int i = 1; i < startWeekday; i++) {
     buffer.write('|  ');
@@ -24,19 +25,23 @@ void printDate(int month, int startWeekday) {
 
   for (int day = 1; day <= daysInMonth[month - 1]; day++) {
     // Formatting of each cell. Add ' ' if date is < 10.
-    if (day < 10) {
-      buffer.write('| $day');
-    } else {
-      buffer.write('|$day');
-    }
+    buffer.write(day < 10 ? '| $day' : '|$day');
 
-    // Wrap after 7 days
-    //
-    // TODO:
-    // If startWeekday > 1, this breaks formatting
-    if (day % 7 == 0) {
-      buffer.write('|\n');
+    // Increment weekday counter and check for wrap
+    weekdayCounter++;
+    if (weekdayCounter > 7) {
+      weekdayCounter = 1;
+      buffer.write('|');
+      if (day != daysInMonth[month - 1]) {
+        buffer.write('\n');
+      }
     }
+  }
+  buffer.write('|');
+
+  // Fill the last week with empty cells if necessary
+  for (int i = weekdayCounter; i <= 7; i++) {
+    buffer.write('|  ');
   }
   buffer.write('|');
 
