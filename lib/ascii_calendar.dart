@@ -19,7 +19,13 @@ void printDate(int month) {
   StringBuffer buffer = StringBuffer();
 
   for (int day = 1; day <= daysInMonth[month - 1]; day++) {
-    buffer.write('| $day ');
+    // Formatting of each cell. Add ' ' if date is < 10.
+    if (day < 10) {
+      buffer.write('| $day');
+    } else {
+      buffer.write('|$day');
+    }
+
     if (day % 7 == 0) {
       buffer.write('|\n');
     }
